@@ -90,6 +90,19 @@ export const useKeywords = () => {
     analyzeKeyword,
     createKeyword,
     updateKeyword,
-    deleteKeyword
+deleteKeyword,
+    fetchSerpResults: async (keyword) => {
+      setLoading(true)
+      setError('')
+      try {
+        const results = await keywordService.getSerpResults(keyword)
+        return results
+      } catch (err) {
+        setError(err.message || 'Failed to fetch SERP results')
+        throw err
+      } finally {
+        setLoading(false)
+      }
+    }
   }
 }

@@ -1,11 +1,12 @@
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import ApperIcon from '@/components/ApperIcon'
-import Badge from '@/components/atoms/Badge'
-import DifficultyGauge from '@/components/molecules/DifficultyGauge'
+import React, { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { formatCPC } from "@/utils/keywordUtils";
+import ApperIcon from "@/components/ApperIcon";
+import Badge from "@/components/atoms/Badge";
+import DifficultyGauge from "@/components/molecules/DifficultyGauge";
 
-const KeywordTable = ({ keywords = [], loading = false, onSort }) => {
-  const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' })
+const KeywordTable = ({ keywords, loading, onSort, onKeywordSelect }) => {
+  const [sortConfig, setSortConfig] = useState({ key: '', direction: 'asc' })
   
   const handleSort = (key) => {
     let direction = 'asc'
@@ -22,10 +23,6 @@ const KeywordTable = ({ keywords = [], loading = false, onSort }) => {
     return volume.toLocaleString()
   }
   
-  const formatCPC = (cpc) => {
-    return `$${cpc.toFixed(2)}`
-  }
-  
   const getCompetitionBadge = (competition) => {
     const variants = {
       'Low': 'success',
@@ -35,6 +32,11 @@ const KeywordTable = ({ keywords = [], loading = false, onSort }) => {
     return variants[competition] || 'default'
   }
   
+  const handleKeywordClick = (keyword) => {
+    if (onKeywordSelect) {
+      onKeywordSelect(keyword.keyword)
+    }
+  }
   const columns = [
     { key: 'keyword', label: 'Keyword', sortable: true },
     { key: 'searchVolume', label: 'Search Volume', sortable: true },
@@ -58,7 +60,7 @@ const KeywordTable = ({ keywords = [], loading = false, onSort }) => {
         <table className="w-full">
           <thead className="bg-gray-50">
             <tr>
-              {columns.map((column) => (
+{columns.map((column) => (
                 <th
                   key={column.key}
                   className={`px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider ${
@@ -69,10 +71,10 @@ const KeywordTable = ({ keywords = [], loading = false, onSort }) => {
                   <div className="flex items-center">
                     {column.label}
                     {column.sortable && (
-                      <div className="ml-2 flex flex-col">
+                      <div className="ml-1 flex flex-col">
                         <ApperIcon
                           name="ChevronUp"
-                          className={`h-3 w-3 ${
+                          className={`h-3 w-3 -mb-1 ${
                             sortConfig.key === column.key && sortConfig.direction === 'asc'
                               ? 'text-primary'
                               : 'text-gray-400'
@@ -93,6 +95,24 @@ const KeywordTable = ({ keywords = [], loading = false, onSort }) => {
               ))}
             </tr>
           </thead>
+if (loading) {
+    return (
+      <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+        <div className="px-6 py-4 border-b border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900">
+            Keyword Variations
+          </h3>
+          <p className="text-sm text-gray-600">
+            Loading keyword data...
+          </p>
+        </div>
+        <div className="text-center py-12">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-gray-500">Loading keywords...</p>
+        </div>
+      </div>
+    )
+  }
           <tbody className="bg-white divide-y divide-gray-200">
             <AnimatePresence>
               {keywords.map((keyword, index) => (
@@ -125,7 +145,7 @@ const KeywordTable = ({ keywords = [], loading = false, onSort }) => {
                       {formatCPC(keyword.cpc)}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+<td className="px-6 py-4 whitespace-nowrap">
                     <Badge variant={getCompetitionBadge(keyword.competition)}>
                       {keyword.competition}
                     </Badge>

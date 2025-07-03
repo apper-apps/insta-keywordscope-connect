@@ -6,6 +6,7 @@ import KeywordMetrics from '@/components/organisms/KeywordMetrics'
 import KeywordTable from '@/components/organisms/KeywordTable'
 import SearchHistory from '@/components/molecules/SearchHistory'
 import ExportButton from '@/components/molecules/ExportButton'
+import SerpPreview from '@/components/organisms/SerpPreview'
 import Loading from '@/components/ui/Loading'
 import Error from '@/components/ui/Error'
 import Empty from '@/components/ui/Empty'
@@ -19,7 +20,10 @@ const KeywordResearch = () => {
   const [searchHistory, setSearchHistory] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
-  
+  const [selectedKeyword, setSelectedKeyword] = useState('')
+  const [serpResults, setSerpResults] = useState([])
+  const [serpLoading, setSerpLoading] = useState(false)
+  const [serpError, setSerpError] = useState('')
   useEffect(() => {
     loadSearchHistory()
   }, [])
@@ -131,11 +135,32 @@ const KeywordResearch = () => {
       .map(row => row.map(field => `"${field}"`).join(','))
       .join('\n')
   }
-  
-  const handleSelectHistory = (keyword) => {
+const handleSelectHistory = (keyword) => {
     handleSearch(keyword)
   }
-  
+
+  const handleKeywordSelect = async (keyword) => {
+    setSelectedKeyword(keyword)
+    setSerpLoading(true)
+    setSerpError('')
+    
+    try {
+      const results = await keywordService.getSerpResults(keyword)
+      setSerpResults(results)
+      toast.success(`Loaded SERP results for "${keyword}"`)
+    } catch (err) {
+      setSerpError(err.message || 'Failed to load SERP results')
+      toast.error('Failed to load SERP results')
+    } finally {
+      setSerpLoading(false)
+    }
+  }
+
+  const retrySerpResults = () => {
+    if (selectedKeyword) {
+      handleKeywordSelect(selectedKeyword)
+    }
+  }
   const handleClearHistory = async () => {
     try {
       const allHistory = await searchHistoryService.getAll()
@@ -214,7 +239,7 @@ const KeywordResearch = () => {
             />
           )}
           
-          {!error && keywords.length > 0 && (
+{!error && keywords.length > 0 && (
             <div className="space-y-6">
               <div className="flex justify-between items-center">
                 <h2 className="text-2xl font-bold text-gray-900">
@@ -231,10 +256,10 @@ const KeywordResearch = () => {
                 keywords={keywords}
                 loading={loading}
                 onSort={handleSort}
+                onKeywordSelect={handleKeywordSelect}
               />
             </div>
           )}
-          
           {!error && !loading && !currentKeyword && (
             <Empty
               icon="Search"
@@ -253,9 +278,22 @@ const KeywordResearch = () => {
               actionLabel="Try Different Keyword"
               onAction={() => handleSearch('SEO tools')}
             />
-          )}
+)}
         </div>
       </div>
+      
+      {/* SERP Preview Section */}
+      {(selectedKeyword || serpResults.length > 0 || serpLoading || serpError) && (
+        <div className="mt-8">
+          <SerpPreview
+            keyword={selectedKeyword}
+            results={serpResults}
+            loading={serpLoading}
+            error={serpError}
+            onRetry={retrySerpResults}
+          />
+        </div>
+      )}
     </div>
   )
 }

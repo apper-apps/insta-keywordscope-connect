@@ -199,8 +199,66 @@ class KeywordService {
       throw new Error(`Keyword with id ${id} not found`)
     }
     
-    this.keywords.splice(index, 1)
+this.keywords.splice(index, 1)
     return true
+  }
+
+  async getSerpResults(keyword) {
+    await this.delay(500)
+    
+    // Generate mock SERP results
+    const serpResults = this.generateSerpResults(keyword)
+    return serpResults
+  }
+
+  generateSerpResults(keyword) {
+    const domains = [
+      'wikipedia.org', 'hubspot.com', 'moz.com', 'ahrefs.com', 'searchengineland.com',
+      'neil-patel.com', 'backlinko.com', 'semrush.com', 'wordstream.com', 'contentmarketinginstitute.com'
+    ]
+    
+    const titleTemplates = [
+      `${keyword} - Complete Guide 2024`,
+      `Best ${keyword} Strategies That Actually Work`,
+      `The Ultimate ${keyword} Guide for Beginners`,
+      `${keyword}: Everything You Need to Know`,
+      `How to Master ${keyword} in 2024`,
+      `${keyword} Best Practices and Tips`,
+      `Advanced ${keyword} Techniques`,
+      `${keyword} vs Alternatives: Complete Comparison`,
+      `Free ${keyword} Tools and Resources`,
+      `${keyword} Case Studies and Examples`
+    ]
+    
+    const descriptionTemplates = [
+      `Learn everything about ${keyword} with our comprehensive guide. Discover proven strategies, best practices, and expert tips to get started today.`,
+      `Master ${keyword} with step-by-step tutorials and real-world examples. Our expert-backed approach helps you achieve better results faster.`,
+      `Get the most complete ${keyword} resource online. Includes templates, checklists, and case studies from industry leaders.`,
+      `Transform your ${keyword} strategy with actionable insights from top experts. Free tools and resources included.`,
+      `The definitive guide to ${keyword} success. Learn from 100+ case studies and implement proven strategies that work.`,
+      `Everything you need to know about ${keyword} in one place. From basics to advanced techniques, we've got you covered.`,
+      `Discover the latest ${keyword} trends and best practices. Updated regularly with new insights and strategies.`,
+      `Join thousands who've improved their ${keyword} results. Get instant access to our complete toolkit and resources.`
+    ]
+    
+    const results = []
+    const numResults = Math.floor(Math.random() * 5) + 5 // 5-9 results
+    
+    for (let i = 0; i < numResults; i++) {
+      const domain = domains[Math.floor(Math.random() * domains.length)]
+      const title = titleTemplates[Math.floor(Math.random() * titleTemplates.length)]
+      const description = descriptionTemplates[Math.floor(Math.random() * descriptionTemplates.length)]
+      
+      results.push({
+        id: (i + 1).toString(),
+        title: title,
+        url: `https://${domain}/${keyword.toLowerCase().replace(/\s+/g, '-')}`,
+        description: description,
+        position: i + 1
+      })
+    }
+    
+    return results
   }
 }
 
