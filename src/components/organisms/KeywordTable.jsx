@@ -37,7 +37,7 @@ const KeywordTable = ({ keywords, loading, onSort, onKeywordSelect }) => {
       onKeywordSelect(keyword.keyword)
     }
   }
-  const columns = [
+const columns = [
     { key: 'keyword', label: 'Keyword', sortable: true },
     { key: 'searchVolume', label: 'Search Volume', sortable: true },
     { key: 'difficulty', label: 'Difficulty', sortable: true },
@@ -45,6 +45,25 @@ const KeywordTable = ({ keywords, loading, onSort, onKeywordSelect }) => {
     { key: 'competition', label: 'Competition', sortable: true },
   ]
   
+  if (loading) {
+    return (
+      <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+        <div className="px-6 py-4 border-b border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900">
+            Keyword Variations
+          </h3>
+          <p className="text-sm text-gray-600">
+            Loading keyword data...
+          </p>
+        </div>
+        <div className="text-center py-12">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-gray-500">Loading keywords...</p>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="bg-white rounded-xl shadow-lg overflow-hidden">
       <div className="px-6 py-4 border-b border-gray-200">
@@ -60,7 +79,7 @@ const KeywordTable = ({ keywords, loading, onSort, onKeywordSelect }) => {
         <table className="w-full">
           <thead className="bg-gray-50">
             <tr>
-{columns.map((column) => (
+              {columns.map((column) => (
                 <th
                   key={column.key}
                   className={`px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider ${
@@ -95,24 +114,6 @@ const KeywordTable = ({ keywords, loading, onSort, onKeywordSelect }) => {
               ))}
             </tr>
           </thead>
-if (loading) {
-    return (
-      <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900">
-            Keyword Variations
-          </h3>
-          <p className="text-sm text-gray-600">
-            Loading keyword data...
-          </p>
-        </div>
-        <div className="text-center py-12">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-gray-500">Loading keywords...</p>
-        </div>
-      </div>
-    )
-  }
           <tbody className="bg-white divide-y divide-gray-200">
             <AnimatePresence>
               {keywords.map((keyword, index) => (
