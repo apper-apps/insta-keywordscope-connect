@@ -1,0 +1,47 @@
+[
+  {
+    "Id": 1,
+    "keyword": "digital marketing",
+    "searchVolume": 74000,
+    "difficulty": 65,
+    "cpc": 3.42,
+    "competition": "High",
+    "timestamp": "2024-01-15T10:00:00Z"
+  },
+  {
+    "Id": 2,
+    "keyword": "SEO tools",
+    "searchVolume": 45000,
+    "difficulty": 55,
+    "cpc": 4.12,
+    "competition": "Medium",
+    "timestamp": "2024-01-15T10:00:00Z"
+  },
+  {
+    "Id": 3,
+    "keyword": "content marketing",
+    "searchVolume": 60000,
+    "difficulty": 58,
+    "cpc": 2.89,
+    "competition": "High",
+    "timestamp": "2024-01-15T10:00:00Z"
+  },
+  {
+    "Id": 4,
+    "keyword": "keyword research",
+    "searchVolume": 22000,
+    "difficulty": 42,
+    "cpc": 3.67,
+    "competition": "Medium",
+    "timestamp": "2024-01-15T10:00:00Z"
+  },
+  {
+    "Id": 5,
+    "keyword": "social media marketing",
+    "searchVolume": 89000,
+    "difficulty": 72,
+    "cpc": 2.34,
+    "competition": "High",
+    "timestamp": "2024-01-15T10:00:00Z"
+  }
+]

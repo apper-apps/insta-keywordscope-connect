@@ -1,0 +1,152 @@
+[
+  {
+    "Id": 1,
+    "parentId": "digital marketing",
+    "keyword": "digital marketing strategy",
+    "searchVolume": 33000,
+    "difficulty": 58,
+    "cpc": 4.12,
+    "competition": "High",
+    "relevance": 95
+  },
+  {
+    "Id": 2,
+    "parentId": "digital marketing",
+    "keyword": "digital marketing course",
+    "searchVolume": 27000,
+    "difficulty": 45,
+    "cpc": 6.78,
+    "competition": "Medium",
+    "relevance": 90
+  },
+  {
+    "Id": 3,
+    "parentId": "digital marketing",
+    "keyword": "digital marketing agency",
+    "searchVolume": 41000,
+    "difficulty": 72,
+    "cpc": 8.45,
+    "competition": "High",
+    "relevance": 88
+  },
+  {
+    "Id": 4,
+    "parentId": "digital marketing",
+    "keyword": "digital marketing jobs",
+    "searchVolume": 18000,
+    "difficulty": 38,
+    "cpc": 2.12,
+    "competition": "Medium",
+    "relevance": 85
+  },
+  {
+    "Id": 5,
+    "parentId": "digital marketing",
+    "keyword": "digital marketing tools",
+    "searchVolume": 15000,
+    "difficulty": 52,
+    "cpc": 5.23,
+    "competition": "Medium",
+    "relevance": 82
+  },
+  {
+    "Id": 6,
+    "parentId": "digital marketing",
+    "keyword": "digital marketing consultant",
+    "searchVolume": 8900,
+    "difficulty": 48,
+    "cpc": 7.89,
+    "competition": "Medium",
+    "relevance": 80
+  },
+  {
+    "Id": 7,
+    "parentId": "digital marketing",
+    "keyword": "digital marketing trends",
+    "searchVolume": 12000,
+    "difficulty": 35,
+    "cpc": 3.56,
+    "competition": "Low",
+    "relevance": 78
+  },
+  {
+    "Id": 8,
+    "parentId": "digital marketing",
+    "keyword": "digital marketing services",
+    "searchVolume": 25000,
+    "difficulty": 68,
+    "cpc": 9.12,
+    "competition": "High",
+    "relevance": 75
+  },
+  {
+    "Id": 9,
+    "parentId": "digital marketing",
+    "keyword": "digital marketing examples",
+    "searchVolume": 9800,
+    "difficulty": 28,
+    "cpc": 2.45,
+    "competition": "Low",
+    "relevance": 72
+  },
+  {
+    "Id": 10,
+    "parentId": "digital marketing",
+    "keyword": "digital marketing plan",
+    "searchVolume": 14000,
+    "difficulty": 42,
+    "cpc": 4.67,
+    "competition": "Medium",
+    "relevance": 70
+  },
+  {
+    "Id": 11,
+    "parentId": "digital marketing",
+    "keyword": "digital marketing campaigns",
+    "searchVolume": 11000,
+    "difficulty": 46,
+    "cpc": 5.89,
+    "competition": "Medium",
+    "relevance": 68
+  },
+  {
+    "Id": 12,
+    "parentId": "digital marketing",
+    "keyword": "digital marketing metrics",
+    "searchVolume": 6700,
+    "difficulty": 39,
+    "cpc": 4.23,
+    "competition": "Medium",
+    "relevance": 65
+  },
+  {
+    "Id": 13,
+    "parentId": "digital marketing",
+    "keyword": "digital marketing automation",
+    "searchVolume": 8200,
+    "difficulty": 55,
+    "cpc": 6.45,
+    "competition": "Medium",
+    "relevance": 62
+  },
+  {
+    "Id": 14,
+    "parentId": "digital marketing",
+    "keyword": "digital marketing budget",
+    "searchVolume": 5400,
+    "difficulty": 33,
+    "cpc": 3.78,
+    "competition": "Low",
+    "relevance": 60
+  },
+  {
+    "Id": 15,
+    "parentId": "digital marketing",
+    "keyword": "digital marketing ROI",
+    "searchVolume": 4900,
+    "difficulty": 41,
+    "cpc": 5.12,
+    "competition": "Medium",
+    "relevance": 58
+  }
+]
